@@ -1,0 +1,64 @@
+<html>
+    <style>
+        #content{
+            text-align: center;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+                $("#awesome").click(function (e){
+                var value = $("#awesome");
+                var img = $('.catimg').attr('src');
+                $.ajax({
+                    type: "POST",
+                    contentType: 'application/json',
+                    url: "/vote-awesome",
+                    dataType: 'json',
+                    data: JSON.stringify({vote: value.val(), url: img}),
+                    dataType: "json",
+                    success: function() {
+                        location.reload();
+                    }
+                })
+            })
+        })
+
+        $(document).ready(function(){
+                $("#extra-awesome").click(function (e){
+                var value = $("#extra-awesome");
+                var img = $('.catimg').attr('src');
+                $.ajax({
+                    type: "POST",
+                    contentType: 'application/json',
+                    url: "/vote-extra-awesome",
+                    dataType: 'json',
+                    data: JSON.stringify({vote: value.val(), url: img}),
+                    dataType: "json",
+                    success: function() {
+                        location.reload();
+                    }
+                })
+            })
+        })
+
+    </script>
+
+    <title>test world</title>
+    <body>
+        <br>
+        <div id="content">
+            <img src="{{ catimagefinal }}" alt="cat" class="catimg" width="500" height="500">
+            <br><br>
+
+            <button id="awesome" class="btn btn-default" type="submit" value="awesome"> Awesome! </button>
+            <button id="extra-awesome" class="btn btn-default" type="submit" value ="extra-awesome" > Extra awesome! </button>
+        </div>
+
+
+    </body>
+</html>
