@@ -20,7 +20,8 @@ def asyncio_get(url):
 def index():
     catimage = (asyncio_get('https://cataas.com/cat?json=true'))
     url = json.loads(catimage)
-    catURL = f"https://cataas.com{url['url']}"
+    print(url)
+    catURL = f"https://cataas.com/cat/{url['_id']}"
     return render_template('index.html', catimagefinal=catURL)
 
 @app.route("/vote-awesome", methods=["GET","POST"])
